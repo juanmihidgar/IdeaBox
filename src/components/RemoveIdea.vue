@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex justify-center absolute top-40">
+  <div class="w-full flex justify-center fixed top-40">
     <article class="w-3/4 p-4 bg-gray-400 shadow-2xl">
       <p class="text-center text-xl">Remove {{ name }}?</p>
       <section class="flex justify-end">
