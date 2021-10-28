@@ -1,5 +1,13 @@
 <template>
   <article class="p-3 mb-4 rounded-lg sm:flex sm:items-center">
+    <!-- Delete -->
+    <img
+      v-if="userIdea"
+      @click="removeIdea"
+      class="mr-3 cursor-pointer"
+      src="@/assets/img/remove.svg"
+      alt="Remove idea"
+    />
     <!-- Info -->
     <section class="text-center sm:flex-1 sm:text-left sm:mr-2">
       <h2 class="text-xl sm:text-2xl">
@@ -51,7 +59,7 @@ import { computed } from "vue";
 
 export default {
   name: "AppIdea",
-  emits: ["vote-idea"],
+  emits: ["vote-idea", "remove-idea"],
   props: {
     idea: {
       type: Object,
@@ -64,6 +72,10 @@ export default {
   setup(props, { emit }) {
     const voteIdea = (type) => emit("vote-idea", { type, id: props.idea.id });
 
+    const userIdea = computed(
+      () => props.user && props.user.uid === props.idea.user
+    );
+
     const userVoted = computed(() => {
       let result;
       if (props.user.votes) {
@@ -72,7 +84,13 @@ export default {
       return result;
     });
 
-    return { voteIdea, userVoted };
+    const removeIdea = () =>
+      emit("remove-idea", {
+        name: props.idea.name,
+        id: props.idea.id,
+      });
+
+    return { voteIdea, userVoted, userIdea, removeIdea };
   },
 };
 </script>
