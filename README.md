@@ -1,5 +1,7 @@
 # idea-box-live
 
+Este proyecto muestra una lista de ideas añadidas por los usuarios con un sistema de votos que se almacena en el storage de firebase. Está realizado con Vue3
+
 ## Project setup
 ```
 npm install
